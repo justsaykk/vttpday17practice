@@ -39,4 +39,14 @@ public class BoardGamesRestController {
                 .build();
         return ResponseEntity.ok(resp.toString());
     }
+
+    @GetMapping(path = "/count")
+    public ResponseEntity<String> count() {
+        String count = bgSvc.getCount();
+
+        JsonObject resp = Json.createObjectBuilder()
+                .add("count", count)
+                .build();
+        return ResponseEntity.ok(resp.toString());
+    }
 }

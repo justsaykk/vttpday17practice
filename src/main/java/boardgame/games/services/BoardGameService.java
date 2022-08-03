@@ -32,4 +32,9 @@ public class BoardGameService {
         List<String> payload = bgRepo.getList(offset, limit);
         return payload;
     }
+
+    public String getCount() {
+        String count = bgRepo.getCount();
+        return count;
+    }
 }

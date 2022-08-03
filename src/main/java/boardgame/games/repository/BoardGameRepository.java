@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.redis.core.RedisOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Repository;
@@ -39,5 +40,14 @@ public class BoardGameRepository {
         }
 
         return keyList;
+    }
+
+    public String getCount() {
+        List<String> result = redisTemplate.keys("[0-9]*").stream().toList();
+        int count = 0;
+        for (int i = 0; i < result.size(); i++) {
+            count++;
+        }
+        return Integer.toString(count);
     }
 }
